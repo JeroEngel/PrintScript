@@ -1,0 +1,67 @@
+@startuml
+
+    class SourceCode {
+        +String code
+        +read(): void
+    }
+
+    class Lexer {
+        +List<Token> tokens
+        +tokenize(SourceCode): List<Token>
+    }
+
+    class Token {
+        +String type
+        +String value
+        +int line
+        +int column
+    }
+
+    class Parser {
+        +AST parse(List<Token>): AST
+    }
+
+    class AST {
+        +Node root
+    }
+
+    class Node {
+        +String type
+        +String value
+        +List<Node> children
+    }
+
+    class Interpreter {
+        +execute(AST): ExecutionResult
+    }
+
+    class ExecutionResult {
+        +String output
+    }
+
+    class Formatter {
+        +String format(AST): String
+    }
+
+    class StaticCodeAnalyzer {
+        +List<AnalysisReport> analyze(AST): List<AnalysisReport>
+    }
+
+    class AnalysisReport {
+        +String message
+        +int line
+        +int column
+    }
+
+    SourceCode --> Lexer : "provide source code"
+    Lexer --> Token : "generate tokens"
+    Lexer --> Parser : "provide tokens"
+    Parser --> AST : "generate AST"
+    AST --> Interpreter : "provide AST"
+    AST --> Formatter : "provide AST"
+    AST --> StaticCodeAnalyzer : "provide AST"
+    Interpreter --> ExecutionResult : "return execution result"
+    Formatter --> SourceCode : "return formatted code"
+    StaticCodeAnalyzer --> AnalysisReport : "return analysis report"
+
+@enduml
