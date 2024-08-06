@@ -8,5 +8,6 @@ enum class TokenType {
     ASSIGNATION,
     SEMICOLON,
     WHITESPACE,
-    UNKNOWN
+    UNKNOWN,
+    NUMBER,
 }

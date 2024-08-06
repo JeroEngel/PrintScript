@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dddc259f-f050-4fee-8dfa-cb2187027fef" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/LexerTests.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/UML/Diagram.puml" beforeDir="false" afterPath="$PROJECT_DIR$/src/UML/Diagram.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/lexer/Lexer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/lexer/Lexer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/lexer/TokenType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/lexer/TokenType.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +60,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Build PrintScript.executor": "Run",
+    "Gradle.LexerTests.test tokenize.executor": "Run",
     "Gradle.Upgrade Gradle wrapper.executor": "Run",
     "Kotlin.MainKt.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -70,9 +74,9 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "/Users/jeroengelhard/PrintScript/src/main/kotlin/Main.kt",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "vue.rearranger.settings.migration": "true"
   },
@@ -84,13 +88,38 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="C:\Users\Fede\Projects\IngSis\PrintScript\src\main\kotlin\lexer" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="lexer" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Gradle.LexerTests.test tokenize">
+    <configuration name="LexerTests.test tokenize" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;LexerTests.test tokenize&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainKt" />
       <module name="PrintScript.main" />
@@ -100,6 +129,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.LexerTests.test tokenize" />
         <item itemvalue="Kotlin.MainKt" />
       </list>
     </recent_temporary>
@@ -109,6 +139,7 @@
       <set>
         <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
         <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+        <option value="jdk-21.0.2-corretto-21.0.2-4caba194b151-221dcadf" />
       </set>
     </attachedChunks>
   </component>
