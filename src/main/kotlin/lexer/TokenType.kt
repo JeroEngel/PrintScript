@@ -12,5 +12,6 @@ enum class TokenType {
     NUMBER,
     LEFT_PARENTHESIS,
     RIGHT_PARENTHESIS,
-    OPERATOR
+    OPERATOR,
+    STRING_TYPE
 }
