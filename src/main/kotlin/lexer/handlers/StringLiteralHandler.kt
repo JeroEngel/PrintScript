@@ -1,10 +1,9 @@
 package org.example.lexer.handlers
 
-import Lexer
+import lexer.Lexer
 import org.example.lexer.Token
 import org.example.lexer.TokenHandler
 import org.example.lexer.TokenType
-
 
 class StringLiteralHandler : TokenHandler {
     override fun handle(currentChar: Char, lexer: Lexer): Token? {

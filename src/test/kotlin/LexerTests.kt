@@ -1,3 +1,4 @@
+import lexer.Lexer
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import org.example.lexer.Token
@@ -9,12 +10,12 @@ class LexerTests  {
         val code = "let name = Kotlin ; let value = Kotlin2 ; "
         val lexer = Lexer(code)
         val tokens = lexer.tokenize()
+        println(tokens)  // Add this line to print the tokens
         assertEquals(10, tokens.size)
         assertEquals("let", tokens[0].value)
         assertEquals("name", tokens[1].value)
         assertEquals("=", tokens[2].value)
         assertEquals("Kotlin", tokens[3].value)
-        println(tokens)
     }
     @Test
     fun `test tokenize keywords`() {
@@ -99,7 +100,7 @@ class LexerTests  {
             Token(TokenType.IDENTIFIER, "name", 1, 8),
             Token(TokenType.ASSIGNATION, "=", 1, 13),
             Token(TokenType.STRING_LITERAL, "\"Olive\"", 1, 15),
-            Token(TokenType.SEMICOLON, ";", 1, 21),
+            Token(TokenType.SEMICOLON, ";", 1, 22),
             Token(TokenType.KEYWORD, "let", 2, 1),
             Token(TokenType.IDENTIFIER, "myVar", 2, 5),
             Token(TokenType.ASSIGNATION, "=", 2, 11),
