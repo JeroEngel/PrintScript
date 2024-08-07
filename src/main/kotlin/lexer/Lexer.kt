@@ -1,77 +1,40 @@
-
 import org.example.lexer.Token
 import org.example.lexer.TokenType
+import org.example.lexer.handlers.*
 
-class Lexer(private val code: String) {
+class Lexer(val code: String) {
+    var position = 0
+    var line = 1
+    var column = 1
 
-    private var position = 0
-    private var line = 1
-    private var column = 1
-
-    private val keywords = setOf("let", "PrintLn", "String")
+    private val handlers = listOf(
+        WhitespaceHandler(),
+        IdentifierOrKeywordHandler(),
+        StringLiteralHandler(),
+        AssignationHandler(),
+        SemicolonHandler()
+    )
 
     fun tokenize(): List<Token> {
         val tokens = mutableListOf<Token>()
 
         while (position < code.length) {
+            var matched = false
             val currentChar = code[position]
 
-            when {
-                currentChar.isWhitespace() -> {
-                    if (currentChar == '\n') {
-                        line++
-                        column = 1
-                    } else {
-                        column++
-                    }
-                    position++
+            for (handler in handlers) {
+                val token = handler.handle(currentChar, this)
+                if (token != null) {
+                    tokens.add(token)
+                    matched = true
+                    break
                 }
+            }
 
-                currentChar.isLetter() -> {
-                    val start = position
-                    while (position < code.length && code[position].isLetterOrDigit()) {
-                        position++
-                        column++
-                    }
-                    val word = code.substring(start, position)
-                    val type = when {
-                        keywords.contains(word) -> TokenType.KEYWORD
-                        else -> TokenType.IDENTIFIER
-                    }
-                    tokens.add(Token(type, word, line, column - word.length))
-                }
-
-                currentChar == '"' -> {
-                    val start = position
-                    position++
-                    column++
-                    while (position < code.length && code[position] != '"') {
-                        position++
-                        column++
-                    }
-                    position++
-                    column++
-                    val value = code.substring(start, position)
-                    tokens.add(Token(TokenType.STRING_LITERAL, value, line, column - value.length))
-                }
-
-                currentChar == '=' -> {
-                    tokens.add(Token(TokenType.ASSIGNATION, "=", line, column))
-                    position++
-                    column++
-                }
-
-                currentChar == ';' -> {
-                    tokens.add(Token(TokenType.SEMICOLON, ";", line, column))
-                    position++
-                    column++
-                }
-
-                else -> {
-                    tokens.add(Token(TokenType.UNKNOWN, currentChar.toString(), line, column))
-                    position++
-                    column++
-                }
+            if (!matched) {
+                tokens.add(Token(TokenType.UNKNOWN, currentChar.toString(), line, column))
+                position++
+                column++
             }
         }
 

@@ -10,4 +10,5 @@ enum class TokenType {
     WHITESPACE,
     UNKNOWN,
     NUMBER,
+    OPERATOR
 }
