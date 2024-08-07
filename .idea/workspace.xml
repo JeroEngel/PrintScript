@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dddc259f-f050-4fee-8dfa-cb2187027fef" name="Changes" comment="lexer fix and tests implementation">
+    <list default="true" id="dddc259f-f050-4fee-8dfa-cb2187027fef" name="Changes" comment="tratando de pasar tests">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/lexer/handlers/NumberHandler.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/lexer/Lexer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/lexer/Lexer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/lexer/TokenHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/lexer/TokenHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/lexer/handlers/AssignationHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/lexer/handlers/AssignationHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/lexer/handlers/IdentifierOrKeywordHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/lexer/handlers/IdentifierOrKeywordHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/lexer/handlers/SemicolonHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/lexer/handlers/SemicolonHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/lexer/handlers/StringLiteralHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/lexer/handlers/StringLiteralHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/lexer/handlers/WhitespaceHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/lexer/handlers/WhitespaceHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/lexer/TokenType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/lexer/TokenType.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/LexerTests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/LexerTests.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -194,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723042590673</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="tratando de pasar tests">
+      <option name="closed" value="true" />
+      <created>1723045173702</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1723045173702</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,6 +206,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="lexer fix and tests implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="lexer fix and tests implementation" />
+    <MESSAGE value="tratando de pasar tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="tratando de pasar tests" />
   </component>
 </project>

@@ -104,11 +104,13 @@ class LexerTests  {
             Token(TokenType.KEYWORD, "let", 2, 1),
             Token(TokenType.IDENTIFIER, "myVar", 2, 5),
             Token(TokenType.ASSIGNATION, "=", 2, 11),
-            Token(TokenType.IDENTIFIER, "10", 2, 13),
+            Token(TokenType.NUMBER, "10", 2, 13),
             Token(TokenType.SEMICOLON, ";", 2, 15),
             Token(TokenType.KEYWORD, "PrintLn", 3, 1),
+            Token(TokenType.LEFT_PARENTHESIS, "(", 3, 8),
             Token(TokenType.IDENTIFIER, "myVar", 3, 9),
-            Token(TokenType.SEMICOLON, ";", 3, 14)
+            Token(TokenType.RIGHT_PARENTHESIS, ")", 3, 14),
+            Token(TokenType.SEMICOLON, ";", 3, 15)
         )
 
         assertEquals(expectedTokens, tokens)
