@@ -1,3 +1,5 @@
+package lexer
+
 import org.example.lexer.Token
 import org.example.lexer.TokenType
 import org.example.lexer.handlers.*
@@ -12,7 +14,9 @@ class Lexer(val code: String) {
         IdentifierOrKeywordHandler(),
         StringLiteralHandler(),
         AssignationHandler(),
-        SemicolonHandler()
+        SemicolonHandler(),
+        NumberHandler(),
+        ParenthesisHandler()
     )
 
     fun tokenize(): List<Token> {
@@ -31,7 +35,7 @@ class Lexer(val code: String) {
                 }
             }
 
-            if (!matched) {
+            if (!matched && !currentChar.isWhitespace()){
                 tokens.add(Token(TokenType.UNKNOWN, currentChar.toString(), line, column))
                 position++
                 column++
