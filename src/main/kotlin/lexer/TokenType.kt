@@ -10,5 +10,7 @@ enum class TokenType {
     WHITESPACE,
     UNKNOWN,
     NUMBER,
+    LEFT_PARENTHESIS,
+    RIGHT_PARENTHESIS,
     OPERATOR
 }
