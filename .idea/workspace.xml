@@ -4,10 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="dddc259f-f050-4fee-8dfa-cb2187027fef" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/parser/AST.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/parser/Parser.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ParserTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
     <list default="true" id="dddc259f-f050-4fee-8dfa-cb2187027fef" name="Changes" comment="tratando de pasar tests">
       <change afterPath="$PROJECT_DIR$/src/main/kotlin/lexer/handlers/NumberHandler.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/lexer/Lexer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/lexer/Lexer.kt" afterDir="false" />
+>>>>>>> 71dfd1c9f9f533fe9b24538aa4111861d16bce78
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/lexer/TokenType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/lexer/TokenType.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/kotlin/LexerTests.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/LexerTests.kt" afterDir="false" />
     </list>
@@ -15,6 +26,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -50,6 +64,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -62,15 +82,25 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.Build PrintScript.executor": "Run",
+<<<<<<< HEAD
+=======
     "Gradle.LexerTests.executor": "Run",
+>>>>>>> 71dfd1c9f9f533fe9b24538aa4111861d16bce78
     "Gradle.LexerTests.test tokenize.executor": "Run",
     "Gradle.Upgrade Gradle wrapper.executor": "Run",
     "Kotlin.MainKt.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+<<<<<<< HEAD
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/PablinLGBT/projects/PrintScript",
+=======
     "git-widget-placeholder": "fede",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/pablo/projects/PrintScript",
+>>>>>>> 71dfd1c9f9f533fe9b24538aa4111861d16bce78
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -98,7 +128,11 @@
       <recent name="lexer" />
     </key>
   </component>
+<<<<<<< HEAD
+  <component name="RunManager" selected="Gradle.ParserTest.test parse">
+=======
   <component name="RunManager" selected="Gradle.LexerTests">
+>>>>>>> 71dfd1c9f9f533fe9b24538aa4111861d16bce78
     <configuration name="LexerTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -120,7 +154,10 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+<<<<<<< HEAD
+=======
       <RunAsTest>true</RunAsTest>
+>>>>>>> 71dfd1c9f9f533fe9b24538aa4111861d16bce78
       <method v="2" />
     </configuration>
     <configuration name="LexerTests.test tokenize" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -144,7 +181,29 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ParserTest.test parse" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ParserTest.test parse&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
@@ -156,8 +215,13 @@
     </configuration>
     <recent_temporary>
       <list>
+<<<<<<< HEAD
+        <item itemvalue="Gradle.ParserTest.test parse" />
+=======
         <item itemvalue="Gradle.LexerTests" />
+>>>>>>> 71dfd1c9f9f533fe9b24538aa4111861d16bce78
         <item itemvalue="Gradle.LexerTests.test tokenize" />
+        <item itemvalue="Gradle.LexerTests" />
         <item itemvalue="Kotlin.MainKt" />
       </list>
     </recent_temporary>
@@ -204,9 +268,22 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+<<<<<<< HEAD
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+=======
   <component name="VcsManagerConfiguration">
     <MESSAGE value="lexer fix and tests implementation" />
     <MESSAGE value="tratando de pasar tests" />
     <option name="LAST_COMMIT_MESSAGE" value="tratando de pasar tests" />
+>>>>>>> 71dfd1c9f9f533fe9b24538aa4111861d16bce78
   </component>
 </project>
