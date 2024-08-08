@@ -1,7 +1,6 @@
-package org.example.parser
+package org.example
 
-import org.example.lexer.Token
-import org.example.lexer.TokenType
+import Token
 
 class Parser {
     fun parse(tokens: List<Token>): List<AST> {

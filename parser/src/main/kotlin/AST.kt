@@ -1,6 +1,6 @@
-package org.example.parser
+package org.example
 
-import org.example.lexer.TokenType
+import TokenType
 
 class AST(val type: String, val identifier: String, val function: TokenType, val value: String, val start : Int, val end : Int){
     override fun toString(): String {

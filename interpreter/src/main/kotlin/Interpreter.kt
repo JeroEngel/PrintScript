@@ -1,7 +1,4 @@
-package org.example.interpreter
-
-import org.example.lexer.TokenType
-import org.example.parser.AST
+import org.example.AST
 
 class Interpreter(private val ast: List<AST>){
     private val variables = mutableMapOf<String, String>()

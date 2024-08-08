@@ -1,5 +1,3 @@
-package org.example.lexer
-
 object Keywords {
     private val keywords = mutableSetOf("let", "PrintLn", "String")
 

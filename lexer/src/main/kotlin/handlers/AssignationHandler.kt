@@ -1,9 +1,9 @@
-package org.example.lexer.handlers
+package handlers
 
-import lexer.Lexer
-import org.example.lexer.Token
-import org.example.lexer.TokenHandler
-import org.example.lexer.TokenType
+import Lexer
+import Token
+import TokenHandler
+import TokenType
 
 class AssignationHandler : TokenHandler {
     override fun handle(currentChar: Char, lexer: Lexer): Token? {

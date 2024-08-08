@@ -1,6 +1,4 @@
-import lexer.Lexer
-import org.example.interpreter.Interpreter
-import org.example.parser.Parser
+import org.example.Parser
 import org.junit.jupiter.api.Test
 
 class InterpreterTests {

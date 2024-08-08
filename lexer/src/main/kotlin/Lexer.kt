@@ -1,7 +1,4 @@
-package lexer
-
-import org.example.lexer.Token
-import org.example.lexer.TokenType
+import handlers.*
 import org.example.lexer.handlers.*
 
 class Lexer(val code: String) {

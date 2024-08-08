@@ -1,8 +1,8 @@
-package org.example.lexer.handlers
+package handlers
 
-import lexer.Lexer
-import org.example.lexer.Token
-import org.example.lexer.TokenHandler
+import Lexer
+import Token
+import TokenHandler
 
 class WhitespaceHandler : TokenHandler {
     override fun handle(currentChar: Char, lexer: Lexer): Token? {
