@@ -1,5 +1,4 @@
 import org.example.lexer.Token
-import org.example.lexer.TokenType
 import org.example.lexer.TokenType.*
 import org.example.parser.Parser
 import org.junit.jupiter.api.Test

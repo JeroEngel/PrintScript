@@ -2,7 +2,6 @@ package org.example.parser
 
 import org.example.lexer.Token
 import org.example.lexer.TokenType
-import kotlin.reflect.typeOf
 
 class Parser {
     fun parse(tokens: List<Token>): List<AST> {
