@@ -10,6 +10,7 @@ class LexerTests  {
         val code = "let name = Kotlin ; let value = Kotlin2 ; "
         val lexer = Lexer(code)
         val tokens = lexer.tokenize()
+        print(tokens)
         assertEquals(10, tokens.size)
         assertEquals("let", tokens[0].value)
         assertEquals("name", tokens[1].value)
