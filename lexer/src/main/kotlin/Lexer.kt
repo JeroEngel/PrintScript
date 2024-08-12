@@ -13,7 +13,8 @@ class Lexer(val code: String) {
         AssignationHandler(),
         SemicolonHandler(),
         NumberHandler(),
-        ParenthesisHandler()
+        ParenthesisHandler(),
+        LetHandler(),
     )
 
     fun tokenize(): List<Token> {
