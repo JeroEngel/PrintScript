@@ -15,7 +15,11 @@ class IdentifierOrKeywordHandler : TokenHandler {
                 lexer.column++
             }
             val word = lexer.code.substring(start, lexer.position)
-            val type = if (Keywords.isKeyword(word)) TokenType.KEYWORD else TokenType.IDENTIFIER
+            val type = when {
+                word == "let" -> TokenType.LET
+                word == "print" -> TokenType.PRINT
+                else -> TokenType.IDENTIFIER
+            }
             return Token(type, word, lexer.line, lexer.column - word.length)
         }
         return null

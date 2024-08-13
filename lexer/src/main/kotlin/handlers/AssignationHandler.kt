@@ -10,7 +10,7 @@ class AssignationHandler : TokenHandler {
         if (currentChar == '=') {
             lexer.position++
             lexer.column++
-            return Token(TokenType.ASSIGNATION, "=", lexer.line, lexer.column - 1)
+            return Token(TokenType.ASSIGN, "=", lexer.line, lexer.column - 1)
         }
         return null
     }

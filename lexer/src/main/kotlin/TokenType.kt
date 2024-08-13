@@ -1,24 +1,26 @@
 enum class TokenType {
 
-    //TYPE
+    // LITERAL TYPES
     NUMBER,
-    STRING_LITERAL,
+    STRING,  // Renombrado de STRING_LITERAL a STRING para consistencia
 
-    //KEYWORD
-
-
-    //OPERATORS
-
-    KEYWORD,
-    IDENTIFIER,
-    ASSIGNATION,
-    DECLARATION,
+    // KEYWORDS
+    LET,
     PRINT,
+
+    // IDENTIFIER
+    IDENTIFIER,
+
+    // OPERATORS
+    ASSIGN,  // Renombrado de ASSIGNATION a ASSIGN para consistencia
+
+    // SYMBOLS
     SEMICOLON,
-    WHITESPACE,
-    UNKNOWN,
     LEFT_PARENTHESIS,
     RIGHT_PARENTHESIS,
-    OPERATOR,
-    STRING_TYPE
+
+    // WHITESPACE
+
+    // MISC
+    UNKNOWN
 }

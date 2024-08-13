@@ -1,55 +1,36 @@
 package org.example
 
+import ProgramNode
+import StatementNode
 import Token
+import TokenType
+import command.PrintStatementCommand
+import command.VariableDeclarationCommand
 
 class Parser {
-    fun parse(tokens: List<Token>): List<AST> {
-        val ast = mutableListOf<AST>()
-        var i = 0
-        val temporalTokens = mutableListOf<Token>()
-        for (token in tokens) {
-            if (token.type == TokenType.SEMICOLON) {
-                ast.add(createAST(temporalTokens))
-                temporalTokens.clear()
-            } else {
-                temporalTokens.add(token)
-            }
-        }
-        return ast
-    }
 
-    private fun createAST(temporalTokens: MutableList<Token>): AST {
-        var type = ""
-        var identifier = ""
-        var function = TokenType.UNKNOWN
-        var value = ""
-        var start = 0
-        var end = 0
-        var isAssignation = false
-        for (token in temporalTokens) {
-            if (token.type == TokenType.STRING_TYPE) {
-                type = token.value
-            }
-            if (token.type == TokenType.IDENTIFIER) {
-                if (isAssignation) {
-                    value = token.value
-                } else {
-                    identifier = token.value
+    private val commands = mapOf(
+        TokenType.LET to VariableDeclarationCommand(),
+        TokenType.PRINT to PrintStatementCommand()
+    )
+
+    fun parse(tokens: List<Token>): ProgramNode {
+        val statements = mutableListOf<StatementNode>()
+        var index = 0
+        while (index < tokens.size) {
+            val token = tokens[index]
+            val command = commands[token.type]
+            if (command != null) {
+                val (node, newIndex) = command.execute(tokens, index)
+                if (node is StatementNode) {
+                    statements.add(node)
                 }
-            }
-            if (token.type == TokenType.STRING_LITERAL) {
-                value = token.value
-            }
-            if (token.type == TokenType.ASSIGNATION) {
-                function = token.type
-                isAssignation = true
-            }
-            if (token.type == TokenType.NUMBER) {
-                value = token.value
+                index = newIndex
+            } else {
+                throw RuntimeException("Token inesperado en la línea ${token.line}, columna ${token.column}: ${token.type}")
             }
         }
-        start = temporalTokens[0].column
-        end = temporalTokens[temporalTokens.size - 1].column
-        return AST(type, identifier, function, value, start, end)
+
+        return ProgramNode(statements)
     }
 }

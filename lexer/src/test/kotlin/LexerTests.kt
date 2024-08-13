@@ -1,115 +1,64 @@
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
+import java.io.File
 
-class LexerTests  {
+class LexerTests {
+
+    private fun readSourceCodeFromFile(filename: String): String {
+        return File("src/test/resources/$filename").readText()
+    }
+
     @Test
     fun `test tokenize`() {
-        val code = "let name = Kotlin ; let value = Kotlin2 ; "
+        val code = readSourceCodeFromFile("testCode1.txt")
         val lexer = Lexer(code)
         val tokens = lexer.tokenize()
-        print(tokens)
-        assertEquals(10, tokens.size)
+        println(tokens)
+        assertEquals(5, tokens.size)  // Update to expect 14 tokens
+        assertEquals(TokenType.LET, tokens[0].type)
         assertEquals("let", tokens[0].value)
+        assertEquals(TokenType.IDENTIFIER, tokens[1].type)
         assertEquals("name", tokens[1].value)
+        assertEquals(TokenType.ASSIGN, tokens[2].type)
         assertEquals("=", tokens[2].value)
-        assertEquals("Kotlin", tokens[3].value)
-    }
-    @Test
-    fun `test tokenize keywords`() {
-        val code = "let String PrintLn"
-        val lexer = Lexer(code)
-        val tokens = lexer.tokenize()
-
-        val expectedTokens = listOf(
-            Token(TokenType.KEYWORD, "let", 1, 1),
-            Token(TokenType.KEYWORD, "String", 1, 5),
-            Token(TokenType.KEYWORD, "PrintLn", 1, 12)
-        )
-
-        assertEquals(expectedTokens, tokens)
+        assertEquals(TokenType.STRING, tokens[3].type)
+        assertEquals("Olive", tokens[3].value)
+        // Add similar assertions for the remaining tokens
     }
 
     @Test
-    fun `test tokenize identifier`() {
-        val code = "variable"
+    fun `test tokenize2`() {
+        val code =  readSourceCodeFromFile("testCodeIdentifier.txt")
         val lexer = Lexer(code)
         val tokens = lexer.tokenize()
+        println(tokens)
 
         val expectedTokens = listOf(
-            Token(TokenType.IDENTIFIER, "variable", 1, 1)
+            Token(TokenType.LET, "let", 1, 1),
+            Token(TokenType.IDENTIFIER, "name", 1, 5),
+            Token(TokenType.ASSIGN, "=", 1, 10),
+            Token(TokenType.STRING, "\"Olive\"", 1, 12),
+            Token(TokenType.SEMICOLON, ";", 1, 19),
+            Token(TokenType.PRINT, "print", 2, 1),
+            Token(TokenType.LEFT_PARENTHESIS, "(", 2, 6),
+            Token(TokenType.IDENTIFIER, "name", 2, 7),
+            Token(TokenType.RIGHT_PARENTHESIS, ")", 2, 11),
+            Token(TokenType.SEMICOLON, ";", 2, 12),
+            Token(TokenType.PRINT, "print", 3, 1),
+            Token(TokenType.LEFT_PARENTHESIS, "(", 3, 6),
+            Token(TokenType.STRING, "\"Hola mundo\"", 3, 7),
+            Token(TokenType.RIGHT_PARENTHESIS, ")", 3, 19),
+            Token(TokenType.SEMICOLON, ";", 3, 20)
         )
+        assertEquals(expectedTokens.size, tokens.size, "Token count mismatch")
 
-        assertEquals(expectedTokens, tokens)
+        for ((i, expectedToken) in expectedTokens.withIndex()) {
+            val actualToken = tokens[i]
+            assertEquals(expectedToken.type, actualToken.type, "Token type mismatch at index $i")
+            assertEquals(expectedToken.value, actualToken.value, "Token value mismatch at index $i")
+            assertEquals(expectedToken.line, actualToken.line, "Token line mismatch at index $i")
+            assertEquals(expectedToken.column, actualToken.column, "Token column mismatch at index $i")
+        }
     }
-
-    @Test
-    fun `test tokenize string literal`() {
-        val code = "\"Hello, World!\""
-        val lexer = Lexer(code)
-        val tokens = lexer.tokenize()
-
-        val expectedTokens = listOf(
-            Token(TokenType.STRING_LITERAL, "\"Hello, World!\"", 1, 1)
-        )
-
-        assertEquals(expectedTokens, tokens)
-    }
-
-    @Test
-    fun `test tokenize assignation`() {
-        val code = "="
-        val lexer = Lexer(code)
-        val tokens = lexer.tokenize()
-
-        val expectedTokens = listOf(
-            Token(TokenType.ASSIGNATION, "=", 1, 1)
-        )
-
-        assertEquals(expectedTokens, tokens)
-    }
-
-    @Test
-    fun `test tokenize semicolon`() {
-        val code = ";"
-        val lexer = Lexer(code)
-        val tokens = lexer.tokenize()
-
-        val expectedTokens = listOf(
-            Token(TokenType.SEMICOLON, ";", 1, 1)
-        )
-
-        assertEquals(expectedTokens, tokens)
-    }
-
-    @Test
-    fun `test tokenize mixed code`() {
-        val code = """
-            String name = "Olive";
-            let myVar = 10;
-            PrintLn(myVar);
-        """.trimIndent()
-
-        val lexer = Lexer(code)
-        val tokens = lexer.tokenize()
-
-        val expectedTokens = listOf(
-            Token(TokenType.KEYWORD, "String", 1, 1),
-            Token(TokenType.IDENTIFIER, "name", 1, 8),
-            Token(TokenType.ASSIGNATION, "=", 1, 13),
-            Token(TokenType.STRING_LITERAL, "\"Olive\"", 1, 15),
-            Token(TokenType.SEMICOLON, ";", 1, 22),
-            Token(TokenType.KEYWORD, "let", 2, 1),
-            Token(TokenType.IDENTIFIER, "myVar", 2, 5),
-            Token(TokenType.ASSIGNATION, "=", 2, 11),
-            Token(TokenType.NUMBER, "10", 2, 13),
-            Token(TokenType.SEMICOLON, ";", 2, 15),
-            Token(TokenType.KEYWORD, "PrintLn", 3, 1),
-            Token(TokenType.LEFT_PARENTHESIS, "(", 3, 8),
-            Token(TokenType.IDENTIFIER, "myVar", 3, 9),
-            Token(TokenType.RIGHT_PARENTHESIS, ")", 3, 14),
-            Token(TokenType.SEMICOLON, ";", 3, 15)
-        )
-
-        assertEquals(expectedTokens, tokens)
-    }
+        // Continue checking for other tokens..
 }

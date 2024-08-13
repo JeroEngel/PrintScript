@@ -1,5 +1,5 @@
 import handlers.*
-import org.example.lexer.handlers.*
+import org.example.lexer.handlers.IdentifierOrKeywordHandler
 
 class Lexer(val code: String) {
     var position = 0

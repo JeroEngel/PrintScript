@@ -1,18 +1,49 @@
 import org.example.Parser
 import org.junit.jupiter.api.Test
+import java.io.File
+import kotlin.test.assertEquals
 
+class ParserTests {
 
-class ParserTest {
-    private val tokens = listOf( Token(TokenType.KEYWORD, "let", 1, 1), Token(TokenType.IDENTIFIER, "name", 1, 5), Token(
-        TokenType.ASSIGNATION, "=", 1, 10), Token(TokenType.STRING_LITERAL, "Kotlin", 1, 12), Token(TokenType.SEMICOLON, ";", 1, 18), Token(
-        TokenType.KEYWORD, "let", 1, 20), Token(TokenType.IDENTIFIER, "value", 1, 24), Token(TokenType.ASSIGNATION, "=", 1, 30), Token(
-        TokenType.STRING_LITERAL, "Kotlin2", 1, 32), Token(TokenType.SEMICOLON, ";", 1, 39) )
-    private val parser = Parser()
-
+    private fun readSourceCodeFromFile(filename: String): String {
+        return File("src/test/resources/$filename").readText()
+    }
     @Test
     fun `test parse`() {
+        // Read the source code from the file
+        val code = readSourceCodeFromFile("testCodeIdentifier.txt")
+
+        // Create a lexer and tokenize the source code
+        val lexer = Lexer(code)
+        val tokens = lexer.tokenize()
+
+        // Create a parser and parse the tokens
+        val parser = Parser()
         val ast = parser.parse(tokens)
-        println(ast)
-        println(ast[0].type)
+
+        // Expected AST structure
+        val expectedAst = ProgramNode(
+            statements = listOf(
+                VariableDeclarationNode(
+                    identifier = IdentifierNode("name", 1, 5),
+                    value = StringLiteralNode("Olive", 1, 14),
+                    line = 1,
+                    column = 5
+                ),
+                PrintStatementNode(
+                    expression = IdentifierNode("name", 2, 7),
+                    line = 2,
+                    column = 7
+                ),
+                PrintStatementNode(
+                    expression = StringLiteralNode("Hola mundo", 3, 9),
+                    line = 3,
+                    column = 9
+                )
+            )
+        )
+
+        // Assert that the AST produced by the parser matches the expected AST
+        assertEquals(expectedAst, ast)
     }
 }
