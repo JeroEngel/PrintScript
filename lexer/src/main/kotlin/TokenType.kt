@@ -25,7 +25,6 @@ enum class TokenType {
     COLON,
     LEFT_PARENTHESIS,
     RIGHT_PARENTHESIS,
-    COLON,
 
     // WHITESPACE
 
