@@ -24,6 +24,7 @@ data class VariableDeclarationNode(
     val column: Int
 ) : StatementNode() {
     override fun accept(visitor: ASTVisitor) {
+        visitor.visit(this)
     }
 }
 
@@ -34,6 +35,7 @@ data class AssignationNode(
     val column: Int
 ) : StatementNode() {
     override fun accept(visitor: ASTVisitor) {
+        visitor.visit(this)
     }
 }
 
@@ -43,7 +45,7 @@ data class PrintStatementNode(
     val column: Int
 ) : StatementNode() {
     override fun accept(visitor: ASTVisitor) {
-        expression.accept(visitor)
+        visitor.visit(this)
     }
 }
 
