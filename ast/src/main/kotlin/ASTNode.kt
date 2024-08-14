@@ -1,6 +1,4 @@
-import org.example.visitor.ASTVisitor
 
-// Base class for all AST nodes
 interface ASTNode {
     fun accept(visitor: ASTVisitor)
 }

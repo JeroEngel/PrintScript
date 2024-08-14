@@ -1,4 +1,4 @@
-package org.example.lexer.handlers
+package handlers
 
 import Lexer
 import Token
