@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import java.io.File
 
-class LexerTests2 {
+class LexerTest2 {
 
     private fun readSourceCodeFromFile(filename: String): String {
         return File("src/test/resources/$filename").readText()

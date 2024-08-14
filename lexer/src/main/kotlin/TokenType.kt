@@ -15,11 +15,16 @@ enum class TokenType {
 
     // OPERATORS
     ASSIGN,  // Renombrado de ASSIGNATION a ASSIGN para consistencia
+    PLUS,
+    MINUS,
+    MULTIPLY,
+    DIVIDE,
 
     // SYMBOLS
     SEMICOLON,
     LEFT_PARENTHESIS,
     RIGHT_PARENTHESIS,
+    COLON,
 
     // WHITESPACE
 
