@@ -6,12 +6,14 @@ import Token
 import TokenType
 import command.PrintStatementCommand
 import command.VariableDeclarationStatementCommand
+import org.example.command.AssignationCommand
 
 class Parser {
 
     private val commands = mapOf(
         TokenType.LET to VariableDeclarationStatementCommand(),
-        TokenType.PRINT to PrintStatementCommand()
+        TokenType.PRINT to PrintStatementCommand(),
+        TokenType.IDENTIFIER to AssignationCommand()
     )
 
     fun parse(tokens: List<Token>): ProgramNode {

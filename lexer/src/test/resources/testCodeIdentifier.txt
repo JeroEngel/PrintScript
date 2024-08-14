@@ -1,4 +1,4 @@
-let name: String  = "Olive";
+let name : String  = "Olive";
 print(name);
 print("Hola mundo");
 print("Hola mundo"];
