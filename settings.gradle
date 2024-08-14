@@ -3,5 +3,7 @@ plugins {
 }
 rootProject.name = 'PrintScript'
 include('lexer', 'parser', 'interpreter')
-
+include 'common'
+include 'common'
+include 'common'
 
