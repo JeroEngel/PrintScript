@@ -10,12 +10,15 @@ enum class TokenType {
 
     // IDENTIFIER
     IDENTIFIER,
+    STRING_TYPE,
+    NUMBER_TYPE,
 
     // OPERATORS
     ASSIGN,  // Renombrado de ASSIGNATION a ASSIGN para consistencia
 
     // SYMBOLS
     SEMICOLON,
+    COLON,
     LEFT_PARENTHESIS,
     RIGHT_PARENTHESIS,
 

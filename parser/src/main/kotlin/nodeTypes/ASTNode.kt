@@ -27,6 +27,16 @@ data class VariableDeclarationNode(
     }
 }
 
+data class AssignationNode(
+    val identifier: IdentifierNode,
+    val value: ExpressionNode,
+    val line: Int,
+    val column: Int
+) : StatementNode() {
+    override fun accept(visitor: ASTVisitor) {
+    }
+}
+
 data class PrintStatementNode(
     val expression: ExpressionNode,
     val line: Int,

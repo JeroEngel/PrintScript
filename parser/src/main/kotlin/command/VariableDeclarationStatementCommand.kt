@@ -5,11 +5,18 @@ import IdentifierNode
 import StringLiteralNode
 import Token
 import VariableDeclarationNode
+import org.example.error.VariableDeclarationSyntaxErrorChecker
 
 class VariableDeclarationStatementCommand : ParseCommand {
     override fun execute(tokens: List<Token>): ASTNode {
+
+        val errorChecker = VariableDeclarationSyntaxErrorChecker()
+        if (!errorChecker.checkSyntax(tokens)) {
+            throw RuntimeException("Syntax error in variable declaration statement")
+        }
+
         val identifierToken = tokens[1]
-        val valueToken = tokens[3]
+        val valueToken = tokens[5]
 
         val identifierNode = IdentifierNode(identifierToken.value, identifierToken.line, identifierToken.column)
         val valueNode = StringLiteralNode(valueToken.value, valueToken.line, valueToken.column)

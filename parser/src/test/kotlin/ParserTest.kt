@@ -46,4 +46,66 @@ class ParserTests {
         // Assert that the AST produced by the parser matches the expected AST
         assertEquals(expectedAst, ast)
     }
+
+    @Test
+    fun `test parser declaration with pre made list of tokens`() {
+        val tokens = listOf(
+            Token(TokenType.LET, "let", 1, 1),
+            Token(TokenType.IDENTIFIER, "name", 1, 5),
+            Token(TokenType.COLON, ":", 1, 9),
+            Token(TokenType.STRING_TYPE, "String", 1, 11),
+            Token(TokenType.ASSIGN, "=", 1, 18),
+            Token(TokenType.STRING, "Olive", 1, 20),
+
+            Token(TokenType.SEMICOLON, ";", 1, 27),
+        )
+
+        // Create a parser and parse the tokens
+        val parser = Parser()
+        val ast = parser.parse(tokens)
+
+        // Expected AST structure
+        val expectedAst = ProgramNode(
+            statements = listOf(
+                VariableDeclarationNode(
+                    identifier = IdentifierNode("name", 1, 5),
+                    value = StringLiteralNode("Olive", 1, 20),
+                    line = 1,
+                    column = 5
+                )
+            )
+        )
+        // Assert that the AST produced by the parser matches the expected AST
+        assertEquals(expectedAst, ast)
+    }
+
+    @Test
+    fun `test parser print statement with pre made list of tokens`() {
+        val tokens = listOf(
+            Token(TokenType.PRINT, "print", 1, 1),
+            Token(TokenType.LEFT_PARENTHESIS, "(", 1, 6),
+            Token(TokenType.STRING, "Olive", 1, 7),
+            Token(TokenType.RIGHT_PARENTHESIS, ")", 1, 13),
+            Token(TokenType.SEMICOLON, ";", 1, 14),
+
+        )
+
+        // Create a parser and parse the tokens
+        val parser = Parser()
+        val ast = parser.parse(tokens)
+
+        // Expected AST structure
+        val expectedAst = ProgramNode(
+            statements = listOf(
+                PrintStatementNode(
+                    expression = StringLiteralNode("Olive", 1, 7),
+                    line = 1,
+                    column = 7
+                )
+            )
+        )
+        // Assert that the AST produced by the parser matches the expected AST
+        assertEquals(expectedAst, ast)
+    }
+
 }
