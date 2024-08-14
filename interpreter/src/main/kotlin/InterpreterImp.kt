@@ -1,11 +1,11 @@
 package org.example
 
+import InterpreterVisitor
 import ProgramNode
-import visitor.PrintVisitor
 
 class InterpreterImp {
 
-    private val visitor = PrintVisitor()
+    private val visitor = InterpreterVisitor()
 
     fun interpret(programNode: ProgramNode) {
         programNode.accept(visitor)

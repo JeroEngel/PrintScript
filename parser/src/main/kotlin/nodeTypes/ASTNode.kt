@@ -1,4 +1,4 @@
-import visitor.ASTVisitor
+import org.example.visitor.ASTVisitor
 
 // Base class for all AST nodes
 interface ASTNode {
