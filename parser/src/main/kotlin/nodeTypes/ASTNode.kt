@@ -1,4 +1,4 @@
-import visitor.ASTVisitor
+import org.example.visitor.ASTVisitor
 
 // Base class for all AST nodes
 interface ASTNode {
@@ -24,6 +24,18 @@ data class VariableDeclarationNode(
     val column: Int
 ) : StatementNode() {
     override fun accept(visitor: ASTVisitor) {
+        visitor.visit(this)
+    }
+}
+
+data class AssignationNode(
+    val identifier: IdentifierNode,
+    val value: ExpressionNode,
+    val line: Int,
+    val column: Int
+) : StatementNode() {
+    override fun accept(visitor: ASTVisitor) {
+        visitor.visit(this)
     }
 }
 
@@ -33,7 +45,7 @@ data class PrintStatementNode(
     val column: Int
 ) : StatementNode() {
     override fun accept(visitor: ASTVisitor) {
-        expression.accept(visitor)
+        visitor.visit(this)
     }
 }
 

@@ -6,29 +6,25 @@ import PrintStatementNode
 import StringLiteralNode
 import Token
 import TokenType
+import org.example.error.PrintSyntaxErrorChecker
 
 class PrintStatementCommand : ParseCommand {
-    override fun execute(tokens: List<Token>, startIndex: Int): Pair<ASTNode, Int> {
-        // Ensure the '(' token is present
-        if (tokens[startIndex+1].type != TokenType.LEFT_PARENTHESIS) {
-            throw RuntimeException("Expected '(' token")
-        }
+    override fun execute(tokens: List<Token>): ASTNode{
+        val errorChecker = PrintSyntaxErrorChecker()
 
+        if (!errorChecker.checkSyntax(tokens)) {
+            throw RuntimeException("Syntax error in print statement")
+        }
         // Get the expression token
-        val expressionToken = tokens[startIndex + 2]
+        val expressionToken = tokens[2]
         val expressionNode = when (expressionToken.type) {
             TokenType.IDENTIFIER -> IdentifierNode(expressionToken.value, expressionToken.line, expressionToken.column)
             TokenType.STRING -> StringLiteralNode(expressionToken.value, expressionToken.line, expressionToken.column)
-            else -> throw RuntimeException("Unexpected token type inside print: ${expressionToken.type}")
+            else -> throw RuntimeException("Unexpected token type in print statement")
         }
-
-        // Ensure the ')' token is present
-        if (tokens[startIndex + 3].type != TokenType.RIGHT_PARENTHESIS) {
-            throw RuntimeException("Expected ')' token")
-        }
-
         // Create PrintStatementNode and return
         val printNode = PrintStatementNode(expressionNode, expressionToken.line, expressionToken.column)
-        return Pair(printNode, startIndex + 5) // Adjust the index based on the structure of tokens
+
+        return printNode
     }
 }

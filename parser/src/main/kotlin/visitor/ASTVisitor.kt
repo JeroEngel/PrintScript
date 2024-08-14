@@ -1,5 +1,6 @@
-package visitor
+package org.example.visitor
 
+import AssignationNode
 import IdentifierNode
 import PrintStatementNode
 import ProgramNode
@@ -13,4 +14,5 @@ interface ASTVisitor {
     fun visit(printStatementNode: PrintStatementNode)
     fun visit(identifierNode: IdentifierNode)
     fun visit(stringLiteralNode: StringLiteralNode)
+    fun visit(assignationNode: AssignationNode)
 }
