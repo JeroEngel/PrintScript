@@ -18,7 +18,9 @@ class StringLiteralHandler : TokenHandler {
             lexer.position++
             lexer.column++
             val value = lexer.code.substring(start + 1, lexer.position -1)
-            return Token(TokenType.STRING, value, lexer.line, lexer.column - value.length)
+
+            return Token(TokenType.STRING, value, lexer.line, lexer.column - value.length - 2)
+
         }
         return null
     }
