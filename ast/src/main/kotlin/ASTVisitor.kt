@@ -1,13 +1,3 @@
-package org.example.visitor
-
-import AssignationNode
-import IdentifierNode
-import PrintStatementNode
-import ProgramNode
-import StringLiteralNode
-import VariableDeclarationNode
-import org.example.*
-
 interface ASTVisitor {
     fun visit(programNode: ProgramNode)
     fun visit(variableDeclarationNode: VariableDeclarationNode)

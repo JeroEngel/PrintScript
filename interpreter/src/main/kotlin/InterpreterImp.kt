@@ -6,7 +6,6 @@ import ProgramNode
 class InterpreterImp {
 
     private val visitor = InterpreterVisitor()
-
     fun interpret(programNode: ProgramNode) {
         programNode.accept(visitor)
     }
