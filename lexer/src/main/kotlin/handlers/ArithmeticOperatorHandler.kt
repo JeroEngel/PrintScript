@@ -11,22 +11,22 @@ class ArithmeticOperatorHandler : TokenHandler {
             '+' -> {
                 lexer.position++
                 lexer.column++
-                Token(TokenType.PLUS, "+", lexer.line, lexer.column - 1)
+                Token(TokenType.ARITHMETIC_OP, "+", lexer.line, lexer.column - 1)
             }
             '-' -> {
                 lexer.position++
                 lexer.column++
-                Token(TokenType.MINUS, "-", lexer.line, lexer.column - 1)
+                Token(TokenType.ARITHMETIC_OP, "-", lexer.line, lexer.column - 1)
             }
             '*' -> {
                 lexer.position++
                 lexer.column++
-                Token(TokenType.MULTIPLY, "*", lexer.line, lexer.column - 1)
+                Token(TokenType.ARITHMETIC_OP, "*", lexer.line, lexer.column - 1)
             }
             '/' -> {
                 lexer.position++
                 lexer.column++
-                Token(TokenType.DIVIDE, "/", lexer.line, lexer.column - 1)
+                Token(TokenType.ARITHMETIC_OP, "/", lexer.line, lexer.column - 1)
             }
             else -> null
         }

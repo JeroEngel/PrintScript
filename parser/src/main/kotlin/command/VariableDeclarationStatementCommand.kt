@@ -5,13 +5,14 @@ import IdentifierNode
 import StringLiteralNode
 import Token
 import VariableDeclarationNode
-import org.example.error.VariableDeclarationSyntaxErrorChecker
+import org.example.errorCheckers.syntactic.VariableDeclarationSyntaxErrorChecker
 
 class VariableDeclarationStatementCommand : ParseCommand {
+
     override fun execute(tokens: List<Token>): ASTNode {
 
         val errorChecker = VariableDeclarationSyntaxErrorChecker()
-        if (!errorChecker.checkSyntax(tokens)) {
+        if (!errorChecker.check(tokens)) {
             throw RuntimeException("Syntax error in variable declaration statement")
         }
 

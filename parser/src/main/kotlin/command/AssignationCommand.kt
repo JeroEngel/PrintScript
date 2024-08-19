@@ -6,13 +6,13 @@ import IdentifierNode
 import StringLiteralNode
 import Token
 import command.ParseCommand
-import org.example.error.AssignationSyntaxErrorChecker
+import org.example.errorCheckers.syntactic.AssignationSyntaxErrorChecker
 
 class AssignationCommand : ParseCommand {
     override fun execute(tokens: List<Token>): ASTNode {
 
         val errorChecker = AssignationSyntaxErrorChecker()
-        if (!errorChecker.checkSyntax(tokens)) {
+        if (!errorChecker.check(tokens)) {
             throw RuntimeException("Syntax error in assignation statement")
         }
 
