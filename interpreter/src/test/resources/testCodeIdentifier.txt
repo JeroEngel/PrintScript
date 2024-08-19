@@ -1,3 +1,7 @@
 let name : String = "Olive";
 print(name);
 print("Hola mundo");
+name = "Pedro";
+print(name);
+print(2+3+3);
+
