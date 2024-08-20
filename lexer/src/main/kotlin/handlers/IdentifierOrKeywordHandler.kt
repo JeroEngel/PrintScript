@@ -1,9 +1,11 @@
-package org.example.lexer.handlers
+
+package handlers
 
 import Lexer
 import Token
 import TokenHandler
 import TokenType
+import TokenValue
 
 class IdentifierOrKeywordHandler : TokenHandler {
     override fun handle(currentChar: Char, lexer: Lexer): Token? {
@@ -14,12 +16,12 @@ class IdentifierOrKeywordHandler : TokenHandler {
                 lexer.column++
             }
             val word = lexer.code.substring(start, lexer.position)
-            val type = when {
-                word == "let" -> TokenType.LET
-                word == "print" -> TokenType.PRINT
+            val type = when (word) {
+                "let" -> TokenType.LET
+                "print" -> TokenType.PRINT
                 else -> TokenType.IDENTIFIER
             }
-            return Token(type, word, lexer.line, lexer.column - word.length)
+            return Token(type, TokenValue.StringValue(word), lexer.line, lexer.column - word.length)
         }
         return null
     }

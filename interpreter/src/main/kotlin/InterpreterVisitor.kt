@@ -1,4 +1,3 @@
-import org.example.visitor.ASTVisitor
 
 class InterpreterVisitor : ASTVisitor {
 
