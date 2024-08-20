@@ -1,3 +1,4 @@
+import org.example.visitor.ASTVisitor
 
 interface ASTNode {
     fun accept(visitor: ASTVisitor)
