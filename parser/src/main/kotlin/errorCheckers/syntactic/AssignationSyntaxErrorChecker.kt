@@ -1,9 +1,10 @@
-package org.example.error
+package org.example.errorCheckers.syntactic
 
 import Token
+import org.example.errorCheckers.ErrorChecker
 
-class AssignationSyntaxErrorChecker : SyntaxError {
-    override fun checkSyntax(tokens: List<Token>): Boolean {
+class AssignationSyntaxErrorChecker : ErrorChecker {
+    override fun check(tokens: List<Token>): Boolean {
         val index = 0
         if(tokens.size != 3) {
             return false

@@ -14,11 +14,13 @@ enum class TokenType {
     NUMBER_TYPE,
 
     // OPERATORS
-    ASSIGN,  // Renombrado de ASSIGNATION a ASSIGN para consistencia
-    PLUS,
-    MINUS,
+    ASSIGN,
+    ARITHMETIC_OP,
+    SUM,
+    SUBTRACT,
     MULTIPLY,
     DIVIDE,
+    EQUALS,
 
     // SYMBOLS
     SEMICOLON,

@@ -47,8 +47,8 @@ data class PrintStatementNode(
     }
 }
 
-sealed class ExpressionNode : ASTNode
 
+sealed class ExpressionNode : ASTNode
 data class IdentifierNode(
     val name: String,
     val line: Int,
@@ -64,6 +64,18 @@ data class StringLiteralNode(
     val line: Int,
     val column: Int
 ) : ExpressionNode() {
+    override fun accept(visitor: ASTVisitor) {
+        visitor.visit(this)
+    }
+
+}
+data class BinaryExpressionNode(val left: ExpressionNode, val operator: TokenType, val right: ExpressionNode, val line: Int, val column: Int) : ExpressionNode() {
+    override fun accept(visitor: ASTVisitor) {
+        visitor.visit(this)
+    }
+}
+
+data class NumberLiteralNode(val value: Double, val line: Int, val column: Int) : ExpressionNode(){
     override fun accept(visitor: ASTVisitor) {
         visitor.visit(this)
     }

@@ -1,10 +1,10 @@
-package org.example.error
+package org.example.errorCheckers.syntactic
 
 import Token
-import java.time.temporal.IsoFields
+import org.example.errorCheckers.ErrorChecker
 
-class VariableDeclarationSyntaxErrorChecker : SyntaxError {
-    override fun checkSyntax(tokens: List<Token>): Boolean {
+class VariableDeclarationSyntaxErrorChecker : ErrorChecker {
+    override fun check(tokens: List<Token>): Boolean {
         val index = 0
         if(tokens.size != 6) {
             return false

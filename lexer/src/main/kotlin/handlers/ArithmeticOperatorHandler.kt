@@ -1,9 +1,11 @@
+
 package handlers
 
 import Lexer
 import Token
 import TokenHandler
 import TokenType
+import TokenValue
 
 class ArithmeticOperatorHandler : TokenHandler {
     override fun handle(currentChar: Char, lexer: Lexer): Token? {
@@ -11,22 +13,22 @@ class ArithmeticOperatorHandler : TokenHandler {
             '+' -> {
                 lexer.position++
                 lexer.column++
-                Token(TokenType.PLUS, "+", lexer.line, lexer.column - 1)
+                Token(TokenType.SUM, TokenValue.StringValue("+"), lexer.line, lexer.column - 1)
             }
             '-' -> {
                 lexer.position++
                 lexer.column++
-                Token(TokenType.MINUS, "-", lexer.line, lexer.column - 1)
+                Token(TokenType.SUBTRACT, TokenValue.StringValue("-"), lexer.line, lexer.column - 1)
             }
             '*' -> {
                 lexer.position++
                 lexer.column++
-                Token(TokenType.MULTIPLY, "*", lexer.line, lexer.column - 1)
+                Token(TokenType.MULTIPLY, TokenValue.StringValue("*"), lexer.line, lexer.column - 1)
             }
             '/' -> {
                 lexer.position++
                 lexer.column++
-                Token(TokenType.DIVIDE, "/", lexer.line, lexer.column - 1)
+                Token(TokenType.DIVIDE, TokenValue.StringValue("/"), lexer.line, lexer.column - 1)
             }
             else -> null
         }
