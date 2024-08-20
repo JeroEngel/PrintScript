@@ -16,6 +16,10 @@ enum class TokenType {
     // OPERATORS
     ASSIGN,
     ARITHMETIC_OP,
+    SUM,
+    SUBTRACT,
+    MULTIPLY,
+    DIVIDE,
     EQUALS,
 
     // SYMBOLS
