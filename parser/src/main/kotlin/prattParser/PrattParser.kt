@@ -44,7 +44,8 @@ class PrattParser(private val tokens: List<Token>) {
         val prefix = prefixParselets[token.type] ?: throw IllegalArgumentException("No prefix parselet for ${token.type}")
         var left = prefix.parse(this, token)
 
-        while (precedence < getPrecedence()) {
+        while ( currentPosition < tokens.size && precedence < getPrecedence()) {
+
             val infixToken = consume()
             val infix = infixParselets[infixToken.type] ?: throw IllegalArgumentException("No infix parselet for ${infixToken.type}")
             left = infix.parse(this, left, infixToken)
