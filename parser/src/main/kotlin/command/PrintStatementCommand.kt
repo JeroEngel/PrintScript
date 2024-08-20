@@ -32,8 +32,8 @@ class PrintStatementCommand : ParseCommand {
         val expressionToken = tokens[2]
         //
         val expressionNode = when (expressionToken.type) {
-            TokenType.IDENTIFIER -> IdentifierNode(expressionToken.value, expressionToken.line, expressionToken.column)
-            TokenType.STRING -> StringLiteralNode(expressionToken.value, expressionToken.line, expressionToken.column)
+            TokenType.IDENTIFIER -> IdentifierNode(expressionToken.value.toString(), expressionToken.line, expressionToken.column)
+            TokenType.STRING -> StringLiteralNode(expressionToken.value.toString(), expressionToken.line, expressionToken.column)
             else -> throw RuntimeException("Unexpected token type in print statement")
         }
         // Create PrintStatementNode and return
