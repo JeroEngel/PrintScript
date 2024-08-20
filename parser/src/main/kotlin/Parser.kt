@@ -1,10 +1,10 @@
 package org.example
 
+import PrintStatementCommand
 import ProgramNode
 import StatementNode
 import Token
 import TokenType
-import command.PrintStatementCommand
 import command.VariableDeclarationStatementCommand
 import org.example.command.AssignationCommand
 
