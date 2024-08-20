@@ -69,5 +69,30 @@ class ParserTests {
         // Assert that the AST produced by the parser matches the expected AST
         assertEquals(expectedAst, ast)
     }
+    @Test
+    fun `test parser print statement with pre made list of tokens part 2`() {
+        val tokens = listOf(
+            Token(TokenType.PRINT, "print", 1, 1),
+            Token(TokenType.LEFT_PARENTHESIS, "(", 1, 6),
+            Token(TokenType.STRING, "5", 1, 7),
+            Token(TokenType.SUM, "+", 1, 13),
+            Token(TokenType.STRING, "6", 8, 7),
+            Token(TokenType.RIGHT_PARENTHESIS, ")", 1, 13),
+            Token(TokenType.SEMICOLON, ";", 1, 14),
+
+            )
+
+        // Create a parser and parse the tokens
+        val parser = Parser()
+        val ast = parser.parse(tokens)
+        println(ast)
+
+        // Expected AST structure
+
+        // Assert that the AST produced by the parser matches the expected AST
+    }
+
 
 }
+
+
