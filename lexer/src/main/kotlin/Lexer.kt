@@ -1,3 +1,4 @@
+
 import handlers.*
 import handlers.IdentifierOrKeywordHandler
 
@@ -22,8 +23,8 @@ class Lexer(val code: String) {
         val tokens = mutableListOf<Token>()
 
         while (position < code.length) {
-            var matched = false
             val currentChar = code[position]
+            var matched = false
 
             for (handler in handlers) {
                 val token = handler.handle(currentChar, this)
@@ -34,10 +35,9 @@ class Lexer(val code: String) {
                 }
             }
 
-            if (!matched && !currentChar.isWhitespace()){
-                tokens.add(Token(TokenType.UNKNOWN, currentChar.toString(), line, column))
-                position++
-                column++
+            if (!matched && !currentChar.isWhitespace()) {
+                val unknownToken = Token(TokenType.UNKNOWN, TokenValue.StringValue(currentChar.toString()), line, column)
+                throw IllegalArgumentException("Unknown token found: $unknownToken")
             }
         }
 
