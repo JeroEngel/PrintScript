@@ -14,6 +14,14 @@ class PrattParser(private val tokens: List<Token>) {
                 }
             }
         })
+        registerPrefix(TokenType.IDENTIFIER, object : PrefixParselet {
+            override fun parse(parser: PrattParser, token: Token): ExpressionNode {
+                return when (token.value){
+                    is TokenValue.StringValue -> IdentifierNode((token.value as TokenValue.StringValue).value,token.line, token.column)
+                    else -> throw RuntimeException("Expected a StringValue for IDENTIFIER")
+                }
+            }
+        })
         registerPrefix(TokenType.STRING, object : PrefixParselet {
             override fun parse(parser: PrattParser, token: Token): ExpressionNode {
                 return when (token.value){

@@ -3,9 +3,11 @@ package org.example.command
 import ASTNode
 import AssignationNode
 import IdentifierNode
+import NumberLiteralNode
 import PrattParser
 import StringLiteralNode
 import Token
+import TokenType
 import command.ParseCommand
 import org.example.errorCheckers.syntactic.AssignationSyntaxErrorChecker
 
@@ -41,6 +43,13 @@ class AssignationCommand : ParseCommand {
                     else -> throw RuntimeException("Expected a StringValue for STRING")
                 }
                 StringLiteralNode(value, expressionToken.line, expressionToken.column)
+            }
+            TokenType.NUMBER -> {
+                val value = when (val tokenValue = expressionToken.value) {
+                    is TokenValue.NumberValue -> tokenValue.value
+                    else -> throw RuntimeException("Expected a NumberValue for NUMBER")
+                }
+                NumberLiteralNode(value, expressionToken.line, expressionToken.column)
             }
             else -> throw RuntimeException("Unexpected token type in print statement")
         }
