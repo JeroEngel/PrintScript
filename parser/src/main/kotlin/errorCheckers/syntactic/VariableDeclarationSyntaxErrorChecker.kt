@@ -6,32 +6,22 @@ import org.example.errorCheckers.ErrorChecker
 
 class VariableDeclarationSyntaxErrorChecker : ErrorChecker {
     override fun check(tokens: List<Token>): Boolean {
-        //checkNecessaryTokens(tokens)
-        //checkNecessaryTokensOrder(tokens)
+        checkNecessaryTokens(tokens)
+        checkNecessaryTokensOrder(tokens)
         return true
     }
 
     private fun checkNecessaryTokens(tokens: List<Token>) {
-        if (tokens.size < 6) {
-            throw RuntimeException("Invalid number of tokens in variable declaration")
+        if (tokens.size < 6) { throw RuntimeException("Invalid number of tokens in variable declaration") }
         val unknownToken = tokens.find { it.type == TokenType.UNKNOWN }
-        if (unknownToken != null) {
-            throw RuntimeException("Unknown token in print statement, linea ${unknownToken.line}, columna ${unknownToken.column}")
-        }
+        if (unknownToken != null) { throw RuntimeException("Unknown token in print statement, linea ${unknownToken.line}, columna ${unknownToken.column}") }
         val tokenTypes = tokens.map { it.type }
-        val requiredTokenTypes = listOf(
-            TokenType.LET, TokenType.IDENTIFIER, TokenType.COLON, TokenType.ASSIGN
-        )
-
+        val requiredTokenTypes = listOf(TokenType.LET, TokenType.IDENTIFIER, TokenType.COLON, TokenType.ASSIGN)
         for (tokenType in requiredTokenTypes) {
-            if (tokenType !in tokenTypes) {
-                throw RuntimeException("Missing token $tokenType in variable declaration")
-            }
+            if (tokenType !in tokenTypes) { throw RuntimeException("Missing token $tokenType in variable declaration") }
         }
 
-        if (TokenType.NUMBER_TYPE !in tokenTypes && TokenType.STRING_TYPE !in tokenTypes) {
-            throw RuntimeException("Missing type token in variable declaration")
-        }
+        if (TokenType.NUMBER_TYPE !in tokenTypes && TokenType.STRING_TYPE !in tokenTypes) {throw RuntimeException("Missing type token in variable declaration") }
     }
 
     private fun checkNecessaryTokensOrder(tokens: List<Token>) {

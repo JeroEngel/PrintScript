@@ -1,9 +1,6 @@
 import org.example.visitor.ASTVisitor
 
-class InterpreterVisitor : ASTVisitor {
-
-    val context = ExecutionContext()
-
+class InterpreterVisitor(private val interpreter: InterpreterImp) : ASTVisitor {
     override fun visit(programNode: ProgramNode) {
         for (statement in programNode.statements) {
             statement.accept(this)
@@ -12,16 +9,13 @@ class InterpreterVisitor : ASTVisitor {
 
     override fun visit(variableDeclarationNode: VariableDeclarationNode) {
         val value = evaluateExpression(variableDeclarationNode.value)
-        context.addVariable(variableDeclarationNode.identifier.name, value)
+        interpreter.updateContext(interpreter.getContext().addVariable(variableDeclarationNode.identifier.name, value))
+
     }
 
     override fun visit(assignationNode: AssignationNode) {
         val value = evaluateExpression(assignationNode.value)
-        context.addVariable(assignationNode.identifier.name, value)
-    }
-
-    override fun visit(numberLiteralNode: NumberLiteralNode) {
-        // No hay procesamiento adicional para números literales
+        interpreter.updateContext(interpreter.getContext().addVariable(assignationNode.identifier.name, value))
     }
 
     override fun visit(binaryExpressionNode: BinaryExpressionNode) {
@@ -33,18 +27,13 @@ class InterpreterVisitor : ASTVisitor {
         println(value)
     }
 
-    override fun visit(identifierNode: IdentifierNode) {
-        // Obtener valor de la variable si es necesario
-    }
+    override fun visit(identifierNode: IdentifierNode) {}
+    override fun visit(numberLiteralNode: NumberLiteralNode) {}
+    override fun visit(stringLiteralNode: StringLiteralNode) {}
 
-    override fun visit(stringLiteralNode: StringLiteralNode) {
-        // No hay procesamiento adicional para strings literales
-    }
-
-    // Método auxiliar para evaluar una expresión
     private fun evaluateExpression(expression: ExpressionNode): Any? {
         return when (expression) {
-            is IdentifierNode -> context.getVariable(expression.name)
+            is IdentifierNode -> interpreter.getContext().getVariable(expression.name)
             is StringLiteralNode -> expression.value
             is NumberLiteralNode -> expression.value
             is BinaryExpressionNode -> {

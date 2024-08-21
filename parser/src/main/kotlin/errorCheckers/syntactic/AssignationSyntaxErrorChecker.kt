@@ -12,7 +12,7 @@ class AssignationSyntaxErrorChecker : ErrorChecker {
     }
 
     private fun checkNecessaryTokens(tokens: List<Token>) {
-        if (tokens.size != 3) {
+        if (tokens.size < 3) {
             throw RuntimeException("Invalid number of tokens in variable assignment")
         }
         val unknownToken = tokens.find { it.type == TokenType.UNKNOWN }
