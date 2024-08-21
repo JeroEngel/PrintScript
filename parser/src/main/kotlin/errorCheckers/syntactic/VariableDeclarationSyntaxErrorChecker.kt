@@ -7,12 +7,12 @@ import org.example.errorCheckers.ErrorChecker
 class VariableDeclarationSyntaxErrorChecker : ErrorChecker {
     override fun check(tokens: List<Token>): Boolean {
         checkNecessaryTokens(tokens)
-        checkNecessaryTokensOrder(tokens)
+        //checkNecessaryTokensOrder(tokens)
         return true
     }
 
     private fun checkNecessaryTokens(tokens: List<Token>) {
-        if (tokens.size != 6) {
+        if (tokens.size < 6) {
             throw RuntimeException("Invalid number of tokens in variable declaration")
         }
         val tokenTypes = tokens.map { it.type }
