@@ -12,8 +12,9 @@ class VariableDeclarationSyntaxErrorChecker : ErrorChecker {
     }
 
     private fun checkNecessaryTokens(tokens: List<Token>) {
-        if (tokens.size != 6) {
-            throw RuntimeException("Invalid number of tokens in variable declaration")
+        val unknownToken = tokens.find { it.type == TokenType.UNKNOWN }
+        if (unknownToken != null) {
+            throw RuntimeException("Unknown token in print statement, linea ${unknownToken.line}, columna ${unknownToken.column}")
         }
         val tokenTypes = tokens.map { it.type }
         val requiredTokenTypes = listOf(
