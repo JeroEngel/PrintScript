@@ -6,22 +6,28 @@ import org.example.errorCheckers.ErrorChecker
 
 class PrintSyntaxErrorChecker : ErrorChecker {
     override fun check(tokens: List<Token>): Boolean {
-      //  checkNecessaryTokens(tokens)
-      //  checkNecessaryTokensOrder(tokens)
-      //  checkArgsOrder(getArguments(tokens))
+        checkNecessaryTokens(tokens)
+        checkNecessaryTokensOrder(tokens)
+        checkArgsOrder(getArguments(tokens))
         return true
     }
 
     private fun checkNecessaryTokens(tokens: List<Token>) {
-        if (tokens.size < 3) {
-            throw RuntimeException("Missing args in print statement 1")
+        if (tokens[1].type == TokenType.LEFT_PARENTHESIS && tokens[2].type == TokenType.RIGHT_PARENTHESIS) {
+            throw RuntimeException("Missing args in print statement")
         }
+
+        val unknownToken = tokens.find { it.type == TokenType.UNKNOWN }
+        if (unknownToken != null) {
+            throw RuntimeException("Unknown token in print statement, line: ${unknownToken.line}, column: ${unknownToken.column}")
+        }
+
         val tokenTypes = tokens.map { it.type }
         val printTokenTypes = listOf(TokenType.PRINT, TokenType.LEFT_PARENTHESIS, TokenType.RIGHT_PARENTHESIS)
 
-        for (tokenType in printTokenTypes){
+        for (tokenType in printTokenTypes) {
             if (tokenType !in tokenTypes) {
-                throw RuntimeException("Missing token $tokenType in print statement2 ")
+                throw RuntimeException("Missing token $tokenType in print statement")
             }
         }
     }
@@ -29,41 +35,39 @@ class PrintSyntaxErrorChecker : ErrorChecker {
     private fun checkNecessaryTokensOrder(tokens: List<Token>) {
         val statementTokenTypes = tokens.map { it.type }
         val printTokenTypes = listOf(TokenType.PRINT, TokenType.LEFT_PARENTHESIS, TokenType.RIGHT_PARENTHESIS)
-        var bool = false
+        var lastIndex = -1
         for (tokenType in printTokenTypes) {
-            for( statementTokenType in statementTokenTypes){
-                if( tokenType ==  statementTokenType){
-                    bool = printTokenTypes.indexOf(tokenType) <= printTokenTypes.indexOf(statementTokenType)
-                }
+            val currentIndex = statementTokenTypes.indexOf(tokenType)
+            if (currentIndex == -1 || currentIndex < lastIndex) {
+                throw RuntimeException("Unexpected token order in print statement")
+            }
+            lastIndex = currentIndex
+        }
+    }
+
+    private fun checkArgsOrder(args: List<Token>) {
+        if (args.size % 2 == 0) {
+            throw RuntimeException("Invalid number of arguments in print statement")
+        }
+        val argsTokenTypes = args.map { it.type }
+        for (i in 1 until args.size step 2) {
+            if (argsTokenTypes[i] !in listOf(TokenType.ARITHMETIC_OP, TokenType.EQUALS, TokenType.SUM, TokenType.SUBTRACT, TokenType.MULTIPLY, TokenType.DIVIDE)) {
+                throw RuntimeException("Invalid arithmetic operator in print statement")
             }
         }
-        if (!bool) {
-            throw RuntimeException("Unexpected token order in print statement3")
+        for (i in args.indices step 2) {
+            if (argsTokenTypes[i] !in listOf(TokenType.IDENTIFIER, TokenType.NUMBER, TokenType.STRING)) {
+                throw RuntimeException("Invalid argument in print statement")
+            }
         }
     }
-//    private fun checkArgsOrder(args: List<Token>) {
-//        if (args.size % 2 == 0) {
-//            throw RuntimeException("Invalid number of arguments in print statement4")
-//        }
-//        val argsTokenTypes = args.map { it.type }
-//        if (args.size > 1){
-//            for (i in 1 until args.size step 2) {
-//                if (argsTokenTypes[i] != TokenType.ARITHMETIC_OP || argsTokenTypes[i] != TokenType.EQUALS) {
-//                    throw RuntimeException("Invalid arithmetic operator in print statement5")
-//                }
-//            }
-//            for (i in args.indices step 2) {
-//                if (argsTokenTypes[i] != TokenType.IDENTIFIER && argsTokenTypes[i] != TokenType.NUMBER && argsTokenTypes[i] != TokenType.STRING) {
-//                    throw RuntimeException("Invalid argument in print statement6")
-//                }
-//            }
-//        }
-//    }
 
-    fun getArguments(tokens: List<Token>): List<Token> {
-        val leftParenthesis = tokens.indexOf(tokens.find { it.type == TokenType.LEFT_PARENTHESIS })
-        val rightParenthesis = tokens.indexOf(tokens.find { it.type == TokenType.RIGHT_PARENTHESIS })
-        return tokens.subList(leftParenthesis +1, rightParenthesis -1)
+    private fun getArguments(tokens: List<Token>): List<Token> {
+        val leftParenthesis = tokens.indexOfFirst { it.type == TokenType.LEFT_PARENTHESIS }
+        val rightParenthesis = tokens.indexOfFirst { it.type == TokenType.RIGHT_PARENTHESIS }
+        if (leftParenthesis == -1 || rightParenthesis == -1 || leftParenthesis >= rightParenthesis) {
+            throw RuntimeException("Invalid parenthesis in print statement")
+        }
+        return tokens.subList(leftParenthesis + 1, rightParenthesis)
     }
-
 }
