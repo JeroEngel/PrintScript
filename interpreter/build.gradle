@@ -13,7 +13,7 @@ dependencies {
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
     implementation project(':parser')
     implementation project(':lexer')
-
+    implementation(project(':ast'))
 }
 
 test {

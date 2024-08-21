@@ -8,12 +8,18 @@ class PrattParser(private val tokens: List<Token>) {
         // Registro de parselets prefix para manejar números y paréntesis
         registerPrefix(TokenType.NUMBER, object : PrefixParselet {
             override fun parse(parser: PrattParser, token: Token): ExpressionNode {
-                return NumberLiteralNode(token.value!!.toDouble(),token.line, token.column)
+                return when (token.value){
+                    is TokenValue.NumberValue -> NumberLiteralNode((token.value as TokenValue.NumberValue).value,token.line, token.column)
+                    else -> throw RuntimeException("Expected a NumberValue for NUMBER")
+                }
             }
         })
         registerPrefix(TokenType.STRING, object : PrefixParselet {
             override fun parse(parser: PrattParser, token: Token): ExpressionNode {
-                return StringLiteralNode(token.value,token.line, token.column)
+                return when (token.value){
+                    is TokenValue.StringValue -> StringLiteralNode((token.value as TokenValue.StringValue).value,token.line, token.column)
+                    else -> throw RuntimeException("Expected a StringValue for STRING")
+                }
             }
         })
 

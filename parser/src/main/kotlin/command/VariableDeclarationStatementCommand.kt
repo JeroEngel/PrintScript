@@ -19,8 +19,8 @@ class VariableDeclarationStatementCommand : ParseCommand {
         val identifierToken = tokens[1]
         val valueToken = tokens[5]
 
-        val identifierNode = IdentifierNode(identifierToken.value, identifierToken.line, identifierToken.column)
-        val valueNode = StringLiteralNode(valueToken.value, valueToken.line, valueToken.column)
+        val identifierNode = IdentifierNode(identifierToken.value.toString(), identifierToken.line, identifierToken.column)
+        val valueNode = StringLiteralNode(valueToken.value.toString(), valueToken.line, valueToken.column)
 
         val variableNode = VariableDeclarationNode(identifierNode, valueNode, identifierToken.line, identifierToken.column)
 

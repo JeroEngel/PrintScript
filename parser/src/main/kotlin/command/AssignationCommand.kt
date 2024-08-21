@@ -19,8 +19,8 @@ class AssignationCommand : ParseCommand {
         val identifierToken = tokens[0]
         val valueToken = tokens[2]
 
-        val identifierNode = IdentifierNode(identifierToken.value, identifierToken.line, identifierToken.column)
-        val valueNode = StringLiteralNode(valueToken.value, valueToken.line, valueToken.column)
+        val identifierNode = IdentifierNode(identifierToken.value.toString(), identifierToken.line, identifierToken.column)
+        val valueNode = StringLiteralNode(valueToken.value.toString(), valueToken.line, valueToken.column)
 
         val assignationNode = AssignationNode(identifierNode, valueNode, identifierToken.line, identifierToken.column)
 
