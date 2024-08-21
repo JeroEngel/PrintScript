@@ -13,9 +13,15 @@ class PrintSyntaxErrorChecker : ErrorChecker {
     }
 
     private fun checkNecessaryTokens(tokens: List<Token>) {
-        if (tokens.size < 3) {
+        if (tokens[1].type == TokenType.LEFT_PARENTHESIS && tokens[2].type == TokenType.RIGHT_PARENTHESIS) {
             throw RuntimeException("Missing args in print statement")
         }
+
+        val unknownToken = tokens.find { it.type == TokenType.UNKNOWN }
+        if (unknownToken != null) {
+            throw RuntimeException("Unknown token in print statement, line: ${unknownToken.line}, column: ${unknownToken.column}")
+        }
+
         val tokenTypes = tokens.map { it.type }
         val printTokenTypes = listOf(TokenType.PRINT, TokenType.LEFT_PARENTHESIS, TokenType.RIGHT_PARENTHESIS)
 

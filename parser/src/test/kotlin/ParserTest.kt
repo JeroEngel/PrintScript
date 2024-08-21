@@ -1,5 +1,6 @@
 import org.example.Parser
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import java.io.File
 import kotlin.test.assertEquals
 
@@ -95,8 +96,6 @@ class ParserTests {
 
         // Assert that the AST produced by the parser matches the expected AST
     }
-
-
 }
 
 
