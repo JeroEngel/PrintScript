@@ -15,6 +15,10 @@ class AssignationSyntaxErrorChecker : ErrorChecker {
         if (tokens.size != 3) {
             throw RuntimeException("Invalid number of tokens in variable assignment")
         }
+        val unknownToken = tokens.find { it.type == TokenType.UNKNOWN }
+        if (unknownToken != null) {
+            throw RuntimeException("Unknown token in print statement, line: ${unknownToken.line}, column: ${unknownToken.column}")
+        }
         val tokenTypes = tokens.map { it.type }
         val requiredTokenTypes = listOf(TokenType.IDENTIFIER, TokenType.ASSIGN)
 
