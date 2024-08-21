@@ -84,6 +84,7 @@ class ParserTests {
             Token(TokenType.SUM, TokenValue.StringValue("+"), 1, 13),
             Token(TokenType.NUMBER, TokenValue.NumberValue(6.0), 8, 7),
             Token(TokenType.RIGHT_PARENTHESIS, TokenValue.StringValue(")"), 1, 13),
+            Token(TokenType.RIGHT_PARENTHESIS, TokenValue.StringValue(")"), 1, 13),
             Token(TokenType.SEMICOLON, TokenValue.StringValue(";"), 1, 14),
             )
 
