@@ -10,7 +10,7 @@ class LexerTest3 {
 
     @Test
     fun `test full code with types and operators`() {
-        val code = readSourceCodeFromFile("testkk123.txt")
+        val code = readSourceCodeFromFile("AllKnownTokens.txt")
         val lexer = Lexer(code)
         val tokens = lexer.tokenize()
 
@@ -58,4 +58,6 @@ class LexerTest3 {
             assertEquals(expectedToken.column, actualToken.column, "Token column mismatch at index $i")
         }
     }
+
+    
 }

@@ -1,7 +1,0 @@
-let name : String  = "Olive";
-print(name);
-print("Hola mundo");
-print("Hola mundo"];
-
-let name: String;
-name = "pedro";

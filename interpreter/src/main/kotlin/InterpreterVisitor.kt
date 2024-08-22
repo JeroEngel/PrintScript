@@ -1,6 +1,6 @@
 import org.example.visitor.ASTVisitor
 
-class InterpreterVisitor(private val interpreter: InterpreterImp) : ASTVisitor {
+class InterpreterVisitor(private var context: ExecutionContext) : ASTVisitor {
     override fun visit(programNode: ProgramNode) {
         for (statement in programNode.statements) {
             statement.accept(this)
@@ -9,13 +9,12 @@ class InterpreterVisitor(private val interpreter: InterpreterImp) : ASTVisitor {
 
     override fun visit(variableDeclarationNode: VariableDeclarationNode) {
         val value = evaluateExpression(variableDeclarationNode.value)
-        interpreter.updateContext(interpreter.getContext().addVariable(variableDeclarationNode.identifier.name, value))
-
+        context = context.addVariable(variableDeclarationNode.identifier.name, value)
     }
 
     override fun visit(assignationNode: AssignationNode) {
         val value = evaluateExpression(assignationNode.value)
-        interpreter.updateContext(interpreter.getContext().addVariable(assignationNode.identifier.name, value))
+        context = context.addVariable(assignationNode.identifier.name, value)
     }
 
     override fun visit(binaryExpressionNode: BinaryExpressionNode) {
@@ -33,7 +32,7 @@ class InterpreterVisitor(private val interpreter: InterpreterImp) : ASTVisitor {
 
     private fun evaluateExpression(expression: ExpressionNode): Any? {
         return when (expression) {
-            is IdentifierNode -> interpreter.getContext().getVariable(expression.name)
+            is IdentifierNode -> context.getVariable(expression.name)
             is StringLiteralNode -> expression.value
             is NumberLiteralNode -> expression.value
             is BinaryExpressionNode -> {
