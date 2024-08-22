@@ -1,6 +1,7 @@
 import org.example.visitor.ASTVisitor
 
-class SemanticCheckerVisitor(private val interpreter: InterpreterImp) : ASTVisitor {
+class SemanticCheckerVisitor(private var context: ExecutionContext) : ASTVisitor {
+
 
     override fun visit(programNode: ProgramNode) {
         for (statement in programNode.statements) {
@@ -9,15 +10,19 @@ class SemanticCheckerVisitor(private val interpreter: InterpreterImp) : ASTVisit
     }
 
     override fun visit(variableDeclarationNode: VariableDeclarationNode) {
-        if (interpreter.getContext().hasVariable(variableDeclarationNode.identifier.name)) {
+        if (context.hasVariable(variableDeclarationNode.identifier.name)) {
             throw RuntimeException("Error semántico: La variable '${variableDeclarationNode.identifier.name}' ya está declarada.")
         }
+        val value = evaluateExpression(variableDeclarationNode.value)
+        context = context.addVariable(variableDeclarationNode.identifier.name, value)
     }
 
     override fun visit(assignationNode: AssignationNode) {
-        if (!interpreter.getContext().hasVariable(assignationNode.identifier.name)) {
+        if (!context.hasVariable(assignationNode.identifier.name)) {
             throw RuntimeException("Error semántico: La variable '${assignationNode.identifier.name}' no está declarada.")
         }
+        val value = evaluateExpression(assignationNode.value)
+        context =context.addVariable(assignationNode.identifier.name, value)
     }
 
     override fun visit(numberLiteralNode: NumberLiteralNode) {}
@@ -41,19 +46,58 @@ class SemanticCheckerVisitor(private val interpreter: InterpreterImp) : ASTVisit
     }
 
     override fun visit(identifierNode: IdentifierNode) {
-        if (!interpreter.getContext().hasVariable(identifierNode.name)) {
+        if (!context.hasVariable(identifierNode.name)) {
             throw RuntimeException("Error semántico: La variable '${identifierNode.name}' no está declarada.")
         }
     }
 
     override fun visit(stringLiteralNode: StringLiteralNode) {}
 
+    private fun evaluateExpression(expression: ExpressionNode): Any? {
+        return when (expression) {
+            is IdentifierNode -> context.getVariable(expression.name)
+            is StringLiteralNode -> expression.value
+            is NumberLiteralNode -> expression.value
+            is BinaryExpressionNode -> {
+                val leftValue = evaluateExpression(expression.left)
+                val rightValue = evaluateExpression(expression.right)
+
+                when (expression.operator) {
+                    TokenType.SUM -> {
+                        when {
+                            leftValue is String && rightValue is String -> leftValue + rightValue
+                            leftValue is Double && rightValue is Double -> leftValue + rightValue
+                            leftValue is String && rightValue is Double -> leftValue + rightValue.toString()
+                            leftValue is Double && rightValue is String -> leftValue.toString() + rightValue
+                            else -> throw IllegalArgumentException("Operación de suma no soportada para tipos: ${leftValue?.javaClass?.name} y ${rightValue?.javaClass?.name}")
+                        }
+                    }
+                    TokenType.SUBTRACT -> (leftValue as Double) - (rightValue as Double)
+                    TokenType.MULTIPLY -> (leftValue as Double) * (rightValue as Double)
+                    TokenType.DIVIDE -> (leftValue as Double) / (rightValue as Double)
+                    else -> throw IllegalArgumentException("Operador binario inesperado: ${expression.operator}")
+                }
+            }
+            else -> throw IllegalArgumentException("Tipo de expresión no soportada: ${expression::class.java.simpleName}")
+        }
+    }
+
     private fun evaluateExpressionType(expression: ExpressionNode): String {
         return when (expression) {
-            is IdentifierNode -> interpreter.getContext().getVariable(expression.name)?.javaClass?.simpleName ?: "Unknown"
+            is IdentifierNode -> {
+                val variable = context.getVariable(expression.name)
+                variable?.javaClass?.simpleName ?: throw RuntimeException("Error semántico: La variable '${expression.name}' no está declarada.")
+            }
             is StringLiteralNode -> "String"
             is NumberLiteralNode -> "Double"
-            is BinaryExpressionNode -> evaluateExpressionType(expression.left)
+            is BinaryExpressionNode -> {
+                val leftType = evaluateExpressionType(expression.left)
+                val rightType = evaluateExpressionType(expression.right)
+                if (leftType != rightType) {
+                    throw RuntimeException("Error semántico: No se puede sumar ${leftType} con ${rightType}.")
+                }
+                leftType
+            }
             else -> throw IllegalArgumentException("Tipo de expresión no soportada: ${expression::class.java.simpleName}")
         }
     }

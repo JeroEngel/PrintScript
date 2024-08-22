@@ -9,3 +9,4 @@ print(number + number2);
 print(number - number2);
 number = number + number2;
 print(number);
+print(number * number2 + number);
