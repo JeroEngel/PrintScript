@@ -15,7 +15,6 @@ class PrintSemanticErrorChecker: ErrorChecker {
     private fun checkArgs(args: List<Token>){
 
 
-
     }
     private fun getArguments(tokens: List<Token>): List<Token> {
         val leftParenthesis = tokens.indexOf(tokens.find { it.type == TokenType.LEFT_PARENTHESIS })

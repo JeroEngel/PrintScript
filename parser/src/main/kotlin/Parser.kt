@@ -1,10 +1,10 @@
 package org.example
 
+import PrintStatementCommand
 import ProgramNode
 import StatementNode
 import Token
 import TokenType
-import command.PrintStatementCommand
 import command.VariableDeclarationStatementCommand
 import org.example.command.AssignationCommand
 
@@ -29,7 +29,7 @@ class Parser {
                 statements.add(node as StatementNode)
                 index = currentStatement.second
             } else {
-                throw RuntimeException("Token inesperado en la línea ${token.line}, columna ${token.column}: ${token.type}")
+                throw RuntimeException("Token inesperado en linea ${token.line}, columna ${token.column}: ${token.type}")
             }
         }
         return ProgramNode(statements)

@@ -1,4 +1,3 @@
-import org.example.InterpreterImp
 import org.example.Parser
 import org.junit.jupiter.api.Test
 import java.io.File

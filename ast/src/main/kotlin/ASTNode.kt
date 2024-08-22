@@ -1,3 +1,4 @@
+import org.example.visitor.ASTVisitor
 
 interface ASTNode {
     fun accept(visitor: ASTVisitor)
@@ -17,7 +18,7 @@ sealed class StatementNode : ASTNode
 
 data class VariableDeclarationNode(
     val identifier: IdentifierNode,
-    val value: StringLiteralNode,
+    val value: ExpressionNode,
     val line: Int,
     val column: Int
 ) : StatementNode() {
